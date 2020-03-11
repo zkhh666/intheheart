@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../axios.min.js"></script>
+</head>
+<body>
+    <form action="">
+        id：<input type="text" id="id">
+        商品名：<input type="text" id="shopname">
+        商品描述：<input type="text" id="content">
+        价    格：<input type="text" id="price">
+        类    型：<input type="text" id="type">
+        上传图片：<input type="file" name="" id="shoptu">
+
+        <input type="submit" id="submit">
+    </form>
+    
+    <script>
+        submit.onclick = function(e){
+            e.preventDefault();
+            var fd = new FormData()
+            fd.append('id',id.value)    //id
+            fd.append('shopName',shopname.value);//商品名
+            fd.append('shopMs',content.value);  //商品描述
+            fd.append('price',price.value);  //价格
+            fd.append('type',type.value);  //类型
+            fd.append('shopTu',shoptu.files[0]);  //图片
+             
+
+          axios.post('/hou/add',fd)
+          .then((data)=>{
+            //解开一下data数据才能alter（）
+          })
+          .catch((data)=>{
+              console.log(data)
+          })
+        }
+   
+   
+    // axios.post('/hou/add','shopname='+)
+    
+    
+    </script>
+</body>
+</html>

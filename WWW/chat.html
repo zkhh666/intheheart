@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    #box{
+       width: 500px;
+       height: 500px;
+       border: 1px solid black;
+       display: flex;
+       margin-left: 50%;
+       transform: translateX(-50%);
+   
+    }
+    #left{
+       width: 70%;
+       height: 100%;
+       background-color: skyblue;
+      
+    }
+    #left>ul:nth-child(1){
+        width: 100%;
+        height: 70%;
+        border-bottom: 1px solid black;
+    }
+    #left>ul:nth-child(2){
+        width: 100%;
+        height: 30%;
+        position: relative;
+    }
+    #left>ul:nth-child(2)>input{
+        width: 100%;
+        height: 100%;
+    }
+    #left>ul:nth-child(2)>button{
+        position: absolute;
+        right:0;
+        bottom: 0;
+        width: 100px;
+        height: 50px;
+    }
+    #right{
+        width: 30%;
+        height: 100%; 
+    }
+    #right>img:nth-child(1){
+        display: block;
+        width: 100%;
+        height: 70%;
+    }
+    #right>img:nth-child(2){
+        display: block;
+        width: 100%;
+        height: 30%;
+    }
+    #liebiao{
+        overflow: hidden;
+    }
+    
+    </style>
+</head>
+<body>
+    <div id="box">
+        <!-- 左边盒子 -->
+        <div id="left">
+            <ul id="liebiao"></ul>
+            <ul>
+                <input type="text" id="shuru">
+                <button id="fasong">发送</button>
+            </ul>  
+        </div>
+        <!-- 右边盒子 -->
+        <div id="right">
+            <!-- <img src="../img//01.jpg" alt="">
+            <img src="../img//02.jpg" alt=""> -->
+        </div>
+    
+    </div>
+    <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+  
+    <script>
+//获取用户的IP地址和城市
+    var ip = returnCitySN["cip"]
+    var city = returnCitySN["cname"]
+//和后端服务器建立起了链接，链接通道
+    var ws = new WebSocket("ws:/10.9.23.246:8181");
+
+   var hisid ={}
+
+
+//点击返送按钮，创建li到自己电脑上，并且发送一份给后端
+    fasong.onclick = function(){
+      var data = shuru.value
+      var time = new Date()
+    
+      var li = document.createElement('li')
+      li.innerText=`${time}${data}`
+      liebiao.appendChild(li)
+
+      let obj = {data,time,city,ip,hisid}
+      ws.send(JSON.stringify(obj))
+    }
+
+//接收后端传回来的数据
+      ws.onmessage=(e)=>{
+        if(e.data){
+            let news =e.data
+            news = JSON.parse(news)
+            hisid= news.hisid
+            console.log(news)
+            var li = document.createElement('li')
+            li.style.id='qingen'
+
+            li.innerHTML=`<div>${news.city}<span>${news.ip}</span></div>
+                          <div>${news.time}</div>
+                          <div>${news.data}</div> `
+            liebiao.appendChild(li)
+//点击他的名字准备发给服务器
+        } 
+      }
+
+ //检测websockoe的状态，方便断了重连
+    ws.onopen=()=>{
+        console.log('链接成功')
+    }
+    ws.onclose=()=>{
+        console.log('链接关闭了')
+        alert('客服人员已经去睡觉了')
+    }
+    ws.onerror=()=>{
+        console.log('链接失败')
+    }
+   
+  
+    </script>
+</body>
+</html>

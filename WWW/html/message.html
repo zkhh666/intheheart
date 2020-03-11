@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../axios.min.js"></script>
+    <link rel="stylesheet" href="../css//message.css">
+</head>
+<body>
+    <div id="box">
+    <form action="">
+        姓名：<input type="text">
+        <br>
+        性别：
+        <form action="">
+        <input type="radio" name="sex" value="boy">男
+        <input type="radio" name="sex" value="giry">女
+        </form>
+        
+       
+        <fieldset>
+            <legend>重要信息来喽！</legend>
+          
+              身份证号：<br>
+            <input type="text" name="firstname" value="输入功能被我禁了" readonly style="background:r">
+            <br>
+             银行卡号：<br>
+             <input type="text" name="firstname" value="输入功能被我禁了" readonly>
+            
+            
+        </fieldset>
+       选择自己的技术：
+        <select name="cars">
+            <option value="vue">vue</option>
+            <option value="Jq">Jq</option>
+            <option value="react">react</option>
+            <option value="typescript">typescript</option>
+        </select>
+        <br>
+        <input type="checkbox">选我
+        <input type="checkbox">选我
+        <input type='checkbox'>还是选我
+        <br>
+     
+            你有多爱我（1-5）:
+            <input type="number" name="quantity" min="1" max="5">
+        <br>
+        出生年月:
+        <input type="month" name="bdaymonth">
+        <br>
+        <input type="submit" value="提交信息" action="" method="POST">
+    </form>
+    </div>
+   
+    
+</body>
+</html>

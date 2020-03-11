@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta keyword='在心里 intheheart 知识' name="">
+    <title>在心里</title>
+    <!-- <script src="./axios.min.js"></script> -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    
+   <style>
+        body{
+            background-color: skyblue;
+        }
+  
+    .login{
+        width: 400px;
+        height: 400px;
+        background-color: rgb(245, 249, 250);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin:  auto;
+        display: flex;
+       flex-direction: column;
+        align-items: center;
+       justify-content: center;
+    }
+    .login>input{
+        display: block;
+        margin: 10px;
+    }
+    .button>button{
+        margin: 0 20px;
+    }
+    .tourst{
+        margin-top: 40px;
+        width: 100%;
+        text-align: center;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+    }
+    .error{
+    color: red;
+    }
+
+    </style>
+   
+</head>
+<body>
+<div class="login">
+  <h2>Hello,everone!</h2>
+  <form action="">
+  账号：</span><input type="text" name="" id="">
+  密码：<input type="text" name="" id="">
+  <span>忘记密码</span>
+  </form>
+
+  <div class="button">
+        <button id="reg"><a href="./reg.html">注册</a></button>
+        <button id="login">登录</button>
+  </div>
+  <div class="error">账号密码错误</div>
+  <div class="error">验证码错误</div>
+  <a class="tourst">游客模式</a>
+ 
+</div>
+
+<script>
+const form = document.querySelector('form')
+const inps = document.querySelectorAll('input')
+
+
+
+var login = document.getElementById('login')
+//登录功能
+login.onclick =async function(){  
+  var username = inps[0].value
+  var password = inps[1].value
+  console.log(username,password)
+  await  axios.post('/qian/login','username='+username+'&password='+password)
+        .then((data)=>{
+            console.log(data)
+            window.location.href='http://www.intheheart.cn/home.html'
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+}
+
+
+</script>
+
+</body>
+<style>
+/* 横屏 */
+@media screen and (orientation:landscape){
+     
+    }
+    /* 竖屏 */
+    @media screen and (orientation:portrait){
+        
+    }
+    /* 窗口宽度<960,设计宽度=768 */
+    @media screen and (max-width:959px){
+       html{
+           font-size: 16px;
+       }
+    }
+    /* 窗口宽度<768,设计宽度=640 */
+    @media screen and (max-width:767px){
+        html{
+           font-size: 14px;
+       }
+    }
+    /* 窗口宽度<640,设计宽度=480 */
+    @media screen and (max-width:639px){
+        html{
+           font-size: 12px;
+       }
+    }
+    /* 窗口宽度<480,设计宽度=320 */
+    @media screen and (max-width:479px){
+        html{
+           font-size: 10px;
+       }
+    }
+    /* 设备像素比为2 */
+    /* 常用于1px边框，还应规定 3dppx 的情况 */
+    @media (min-resolution: 2dppx) {
+    
+    }
+    /* windows UI 贴靠 */
+    @media screen and (-ms-view-state:snapped){
+         
+    }
+    /* 打印 */
+    @media print{
+         
+    }
+ 
+
+</style>
+</html>
