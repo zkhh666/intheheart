@@ -1,7 +1,5 @@
 //和用户表相关的schem 对象和数据模型
 const mongoose = require('mongoose')
-
-
 //创建一个schema对象 =》当成表头
 //如果要创建一个user表， 
 var qiantaiuser = mongoose.Schema({
@@ -11,14 +9,7 @@ var qiantaiuser = mongoose.Schema({
   });
 //把schema对象变成数据模型（和数据库里面的集合关联），就可以去修改了（增删改查）
 var User = mongoose.model('users', qiantaiuser);//也可以不用是s，需要第三个参数
-
 module.exports = User   //把数据模型做个抛出
-
-
-
-
-
-
 // 查找,会差复数的表users，所以需要把表改成复数，关联那里
 // User.find()
 // .then((data)=>{

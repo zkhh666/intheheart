@@ -46,21 +46,12 @@ if(ip=='::ffff:10.9.23.246'){
            }
         }
 
-
-
-
-
         //如果是别的机器发过来的，那就拿到把信息发送给主机（把对方IP地址拿着发给主机）
         else{
           //对方IP带着
              datas.hisid=ip
                console.log('准备发送给主机了')
-              
                myid['::ffff:10.9.23.246'].send(JSON.stringify(datas));  // 只能发送字符串
-
            }
-     
     })
- 
-    
 })

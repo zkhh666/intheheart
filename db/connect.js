@@ -1,5 +1,5 @@
-//链接前端数据库
 var mongoose = require('mongoose');
+//链接前端数据库
 mongoose.connect('mongodb://localhost/qiantai',{ uuseNewUrlParser: true});
 var db = mongoose.connection;
 db.on('error', (err)=>{
@@ -17,8 +17,7 @@ db.on('error', (err)=>{
 db.once('open', function() {
 console.log('后台数据库链接成功')
 });
-
-//项目，haier的数据库
+//haier的数据库
 mongoose.connect('mongodb://localhost/haier',{ uuseNewUrlParser: true});
 var db = mongoose.connection;
 db.on('error', (err)=>{
